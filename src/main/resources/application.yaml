@@ -10,7 +10,7 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
   cloud:
     function:
-      definition: process;consumeOnly
+      definition: consumeAndProduce;consumeOnly;process
     stream:
       default:
         content-type: application/json
@@ -26,11 +26,15 @@ spring:
           group: process-group-1
           content-type: application/json
         consumeOnly-in-0:
-          destination: input
+          destination: example-input
           group: consume-only-group-1
           content-type: application/json
-        process-out-0:
-          destination: output
+        consumeAndProduce-in-0:
+          destination: example-input
+          group: consume-produce-group-1
+          content-type: application/json
+        consumeAndProduce-out-0:
+          destination: example-output
           content-type: application/json
           producer:
             useNativeEncoding: true

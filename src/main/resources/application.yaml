@@ -2,6 +2,10 @@ spring:
   application:
     name: spring-kafka-demo
   kafka:
+    handler:
+      internal-topic: process
+      response-topic: response
+      error-topic: error
     bootstrap-servers: localhost:29092
     producer:
       acks: all
@@ -22,7 +26,7 @@ spring:
           auto-create-topics-replication-factor: 1
       bindings:
         process-in-0:
-          destination: input
+          destination: ${spring.kafka.handler.internal-topic}
           group: process-group-1
           content-type: application/json
         consumeOnly-in-0:

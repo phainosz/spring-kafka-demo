@@ -12,7 +12,13 @@ import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
 @Component
-public record KafkaStreamExample(KafkaSender kafkaSender, ObjectMapper objectMapper) {
+public class KafkaStreamExample {
+
+    private final ObjectMapper objectMapper;
+
+    public KafkaStreamExample(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
 
     private static final Logger LOG = Logger.getLogger(KafkaStreamExample.class.getName());
 
